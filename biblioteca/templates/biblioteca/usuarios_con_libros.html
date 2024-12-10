@@ -1,6 +1,47 @@
 <h1>Usuarios con Libros Prestados</h1>
+
+<!-- Lista de libros prestados -->
+<h2>Libros Prestados</h2>
 <ul>
     {% for libro in libros_prestados %}
-        <li>{{ libro.titulo }} - {{ libro.usuario.nombre }}</li>
+        <li>
+            {{ libro.titulo }} - 
+            {{ libro.usuario_prestamo.nombre }}
+            <form action="{% url 'eliminar_prestamo' libro.id %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Eliminar Préstamo</button>
+            </form>
+        </li>
     {% endfor %}
 </ul>
+
+<!-- Formulario para nuevo préstamo -->
+<h2>Nuevo Préstamo</h2>
+<form method="post">
+    {% comment %}! Se agrega el token de seguridad generado por Django de forma automática {% endcomment %}
+    {% csrf_token %} 
+
+    
+    <!-- Campo para seleccionar usuario -->
+    <label for="usuario">Usuario:</label>
+    <select name="usuario" id="usuario">
+        <option value="">Seleccione un usuario</option>
+        {% for usuario in usuarios_sin_prestamos %}
+            <option value="{{ usuario.id }}">{{ usuario.nombre }}</option>
+        {% endfor %}
+    </select>
+    <br>
+
+    <!-- Campo para seleccionar libro -->
+    <label for="libro">Libro:</label>
+    <select name="libro" id="libro">
+        <option value="">Seleccione un libro</option>
+        {% for libro in libros_disponibles %}
+            <option value="{{ libro.id }}">{{ libro.titulo }}</option>
+        {% endfor %}
+    </select>
+    <br>
+
+    <!-- Botón para crear préstamo -->
+    <button type="submit">Crear Préstamo</button>
+</form>

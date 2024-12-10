@@ -11,11 +11,11 @@ class Usuario(models.Model):
 
 
 class Libro(models.Model):
-    titulo = models.CharField(max_length=255)
-    autor = models.CharField(max_length=255)
-    fecha_publicacion = models.DateField()
+    titulo = models.CharField(max_length=100)
+    autor = models.CharField(max_length=100)
     disponible = models.BooleanField(default=True)
-    usuario = models.ForeignKey(
+    fecha_publicacion = models.DateField()
+    usuario_prestamo = models.ForeignKey(
         Usuario, null=True, blank=True, on_delete=models.SET_NULL
     )
 

@@ -6,4 +6,10 @@ urlpatterns = [
     path("libros/", views.lista_libros, name="lista_libros"),
     path("prestamos/", views.usuarios_con_libros, name="usuarios_con_libros"),
     path("libros/agregar/", views.agregar_libro, name="agregar_libro"),
+    path(
+        "eliminar_prestamo/<int:libro_id>/",
+        views.eliminar_prestamo,
+        name="eliminar_prestamo",
+    ),
+    path("usuarios_con_libros/", views.usuarios_con_libros, name="usuarios_con_libros"),
 ]

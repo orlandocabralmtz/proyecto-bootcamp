@@ -16,6 +16,7 @@
                 <th>Autor</th>
                 <th>Fecha Publicacion</th>
                 <th>Disponible</th>
+                <th>Usuario Prestamo</th>
             </tr>
         </thead>
         <tbody>
@@ -31,6 +32,13 @@
                         Disponible
                     {% else %}
                         No disponible
+                    {% endif %}
+                </td>
+                <td>
+                    {% if libro.usuario_prestamo %}
+                        {{ libro.usuario_prestamo.nombre }}
+                    {% else %}
+                        No está prestado
                     {% endif %}
                 </td>
             </tr>
