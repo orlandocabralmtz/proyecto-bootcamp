@@ -1,6 +1,48 @@
-<h1>Usuarios</h1>
-<ul>
-    {% for usuario in usuarios %}
-        <li>{{ usuario.nombre }} - {{ usuario.email }}</li>
-    {% endfor %}
-</ul>
+<h1>Lista de Usuarios</h1>
+
+<!-- Tabla de usuarios -->
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Fecha de Registro</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for usuario in usuarios %}
+            <tr>
+                <td>{{ usuario.nombre }}</td>
+                <td>{{ usuario.email }}</td>
+                <td>{{ usuario.fecha_registro }}</td>
+                <td>
+                    <!-- Botón para eliminar usuario -->
+                    <form action="{% url 'eliminar_usuario' usuario.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit">Eliminar Usuario</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Formulario para crear nuevo usuario -->
+<h2>Agregar Nuevo Usuario</h2>
+<form method="post">
+    {% csrf_token %}
+    
+    <!-- Campo de nombre del usuario -->
+    <label for="nombre">Nombre:</label>
+    <input type="text" name="nombre" id="nombre" required>
+    <br>
+
+    <!-- Campo de email del usuario -->
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" required>
+    <br>
+
+    <!-- Botón para agregar usuario -->
+    <button type="submit">Agregar Usuario</button>
+</form>

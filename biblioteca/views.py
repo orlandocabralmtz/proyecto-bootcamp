@@ -4,8 +4,38 @@ from .forms import LibroForm
 
 
 def lista_usuarios(request):
+    if request.method == "POST":
+        # Si se envía el formulario, creamos un nuevo usuario
+        nombre = request.POST.get("nombre")
+        if nombre:
+            # Crear el nuevo usuario y guardar en la base de datos
+            Usuario.objects.create(nombre=nombre)
+        return redirect(
+            "lista_usuarios"
+        )  # Redirigir para evitar reenvíos de formulario
+
+    # Obtener todos los usuarios
     usuarios = Usuario.objects.all()
     return render(request, "biblioteca/lista_usuarios.html", {"usuarios": usuarios})
+
+
+def eliminar_usuario(request, usuario_id):
+    # Obtener el usuario a eliminar
+    usuario = get_object_or_404(Usuario, id=usuario_id)
+
+    # Verificar si el usuario tiene algún libro prestado
+    libros_prestados = Libro.objects.filter(usuario_prestamo=usuario)
+
+    # Si tiene libros prestados, actualizar el campo disponible
+    for libro in libros_prestados:
+        libro.disponible = True  # Hacer el libro disponible
+        libro.usuario_prestamo = None  # Eliminar la relación de préstamo
+        libro.save()
+
+    # Eliminar el usuario
+    usuario.delete()
+
+    return redirect("lista_usuarios")  # Redirigir a la lista de usuarios
 
 
 def lista_libros(request):

@@ -12,4 +12,9 @@ urlpatterns = [
         name="eliminar_prestamo",
     ),
     path("usuarios_con_libros/", views.usuarios_con_libros, name="usuarios_con_libros"),
+    path(
+        "eliminar_usuario/<int:usuario_id>/",
+        views.eliminar_usuario,
+        name="eliminar_usuario",
+    ),
 ]
