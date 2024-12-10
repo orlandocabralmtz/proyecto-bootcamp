@@ -30,6 +30,13 @@ ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
+"""
+Cuando añades "biblioteca" en la lista de INSTALLED_APPS en el archivo settings.py de tu proyecto Django, 
+le estás indicando a Django que reconozca y cargue tu aplicación llamada biblioteca como parte del proyecto.
+ Esto es un paso necesario para que Django pueda encontrar y usar los modelos, vistas, formularios, 
+ y otras configuraciones asociadas a esa aplicación.
+"""
+
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -39,6 +46,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "biblioteca",
 ]
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

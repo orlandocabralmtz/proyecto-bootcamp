@@ -23,7 +23,11 @@ handler404 = (
     "biblioteca.views.pagina_no_encontrada"  # Esto redirigirá a la vista personalizada
 )
 
-
+"""
+include("biblioteca.urls"): Esto le dice a Django que busque el archivo urls.py 
+dentro de la carpeta de la aplicación biblioteca 
+y utilice las rutas que estén definidas allí.
+"""
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("biblioteca/", include("biblioteca.urls")),
