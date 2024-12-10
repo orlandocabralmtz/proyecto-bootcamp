@@ -86,22 +86,22 @@ def lista_libros(request):
     )
 
 
-"""
-Esta vista maneja la visualización de los libros que están prestados. 
-Filtra los libros que tienen un usuario asociado (usuario_prestamo no es nulo) 
-y renderiza la plantilla usuarios_con_libros.html con la lista de libros prestados.
-"""
+# """
+# Esta vista maneja la visualización de los libros que están prestados.
+# Filtra los libros que tienen un usuario asociado (usuario_prestamo no es nulo)
+# y renderiza la plantilla usuarios_con_libros.html con la lista de libros prestados.
+# """
 
 
-def usuarios_con_libros(request):
-    # Obtener todos los libros que están prestados (usuario_prestamo no es nulo)
-    libros_prestados = Libro.objects.filter(usuario_prestamo__isnull=False)
-    # Renderizamos la plantilla 'usuarios_con_libros.html' con los libros prestados
-    return render(
-        request,
-        "biblioteca/usuarios_con_libros.html",
-        {"libros_prestados": libros_prestados},
-    )
+# def usuarios_con_libros(request):
+#     # Obtener todos los libros que están prestados (usuario_prestamo no es nulo)
+#     libros_prestados = Libro.objects.filter(usuario_prestamo__isnull=False)
+#     # Renderizamos la plantilla 'usuarios_con_libros.html' con los libros prestados
+#     return render(
+#         request,
+#         "biblioteca/usuarios_con_libros.html",
+#         {"libros_prestados": libros_prestados},
+#     )
 
 
 """

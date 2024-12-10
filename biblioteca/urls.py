@@ -1,4 +1,8 @@
 from django.urls import path
+from django.contrib.auth import (
+    views as auth_views,
+)  # Importamos las vistas de autenticación de Django
+
 
 """
 Configuración de URLs para el proyecto biblioteca.
@@ -51,4 +55,5 @@ urlpatterns = [
     # Ruta para eliminar un libro, mapeada a la vista 'eliminar_libro'
     # La URL incluye un parámetro 'libro_id' que se pasa a la vista
     path("eliminar_libro/<int:libro_id>/", views.eliminar_libro, name="eliminar_libro"),
+    path("login/", auth_views.LoginView.as_view(), name="login"),
 ]
