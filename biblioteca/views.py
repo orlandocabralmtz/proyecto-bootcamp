@@ -40,7 +40,17 @@ def eliminar_usuario(request, usuario_id):
 
 def lista_libros(request):
     libros = Libro.objects.all()
-    return render(request, "biblioteca/lista_libros.html", {"libros": libros})
+    if request.method == "POST":
+        form = LibroForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("lista_libros")
+    else:
+        form = LibroForm()
+
+    return render(
+        request, "biblioteca/lista_libros.html", {"libros": libros, "form": form}
+    )
 
 
 def usuarios_con_libros(request):
