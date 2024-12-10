@@ -14,6 +14,7 @@
                 <th>ID</th>
                 <th>Título</th>
                 <th>Autor</th>
+                <th>Fecha Publicacion</th>
                 <th>Disponible</th>
             </tr>
         </thead>
@@ -23,8 +24,10 @@
                 <td>{{ libro.id }}</td>
                 <td>{{ libro.titulo }}</td>
                 <td>{{ libro.autor }}</td>
+                <td>{{ libro.fecha_publicacion }}</td>
                 <td>
-                    {% if libro.disponible %}
+                    {% comment %}! Se cambiará el estado de true o false por Disponible y no Disponible {% endcomment %}
+                    {% if libro.disponible %} 
                         Disponible
                     {% else %}
                         No disponible
@@ -34,5 +37,8 @@
             {% endfor %}
         </tbody>
     </table>
+    <a href="{% url 'agregar_libro' %}">
+        <button>Agregar Nuevo Libro</button>
+    </a>
 </body>
 </html>

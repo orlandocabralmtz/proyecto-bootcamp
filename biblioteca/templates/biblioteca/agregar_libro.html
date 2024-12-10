@@ -1,0 +1,10 @@
+<h1>Agregar Nuevo Libro</h1>
+<form method="post">
+    {% comment %}! Se agrega el token de seguridad generado por Django de forma automática {% endcomment %}
+    {% csrf_token %} 
+    {% comment %} ! Se agrega el formulario de forma automática con el método as_p. Django recorre los campos del formulario y los renderiza en un formato de lista de párrafos. {% endcomment %}
+    {{ form.as_p }}  
+    
+    <button type="submit">Agregar Libro</button>
+</form>
+<a href="{% url 'lista_libros' %}">Volver a la lista de libros</a>
