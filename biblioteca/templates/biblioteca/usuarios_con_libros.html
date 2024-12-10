@@ -1,0 +1,6 @@
+<h1>Usuarios con Libros Prestados</h1>
+<ul>
+    {% for libro in libros_prestados %}
+        <li>{{ libro.titulo }} - {{ libro.usuario.nombre }}</li>
+    {% endfor %}
+</ul>
