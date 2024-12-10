@@ -1,6 +1,38 @@
-<h1>Libros</h1>
-<ul>
-    {% for libro in libros %}
-        <li>{{ libro.titulo }} - {{ libro.autor }} - {{ libro.disponible }}</li>
-    {% endfor %}
-</ul>
+<!-- biblioteca/templates/biblioteca/lista_libros.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Libros</title>
+</head>
+<body>
+    <h1>Lista de Libros</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Disponible</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for libro in libros %}
+            <tr>
+                <td>{{ libro.id }}</td>
+                <td>{{ libro.titulo }}</td>
+                <td>{{ libro.autor }}</td>
+                <td>
+                    {% if libro.disponible %}
+                        Disponible
+                    {% else %}
+                        No disponible
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
