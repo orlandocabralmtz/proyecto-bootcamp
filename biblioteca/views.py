@@ -102,3 +102,19 @@ def usuarios_con_libros(request):
             "libros_disponibles": libros_disponibles,
         },
     )
+
+
+def eliminar_libro(request, libro_id):
+    # Obtener el libro a eliminar
+    libro = get_object_or_404(Libro, id=libro_id)
+
+    # Si el libro está prestado, liberar el préstamo
+    if libro.usuario_prestamo:
+        libro.disponible = True  # Marcar el libro como disponible
+        libro.usuario_prestamo = None  # Eliminar el usuario del préstamo
+        libro.save()
+
+    # Eliminar el libro
+    libro.delete()
+
+    return redirect("lista_libros")  # Redirigir a la lista de libros

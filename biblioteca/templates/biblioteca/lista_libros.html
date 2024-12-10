@@ -17,6 +17,7 @@
                 <th>Fecha Publicacion</th>
                 <th>Disponible</th>
                 <th>Usuario Prestamo</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -27,7 +28,6 @@
                 <td>{{ libro.autor }}</td>
                 <td>{{ libro.fecha_publicacion }}</td>
                 <td>
-                    {% comment %}! Se cambiará el estado de true o false por Disponible y no Disponible {% endcomment %}
                     {% if libro.disponible %} 
                         Disponible
                     {% else %}
@@ -40,6 +40,13 @@
                     {% else %}
                         No está prestado
                     {% endif %}
+                </td>
+                <td>
+                    <!-- Formulario para eliminar libro -->
+                    <form action="{% url 'eliminar_libro' libro.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" onclick="return confirm('¿Estás seguro de que quieres eliminar este libro?')">Eliminar</button>
+                    </form>
                 </td>
             </tr>
             {% endfor %}

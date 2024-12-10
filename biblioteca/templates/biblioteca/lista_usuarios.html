@@ -17,10 +17,10 @@
                 <td>{{ usuario.email }}</td>
                 <td>{{ usuario.fecha_registro }}</td>
                 <td>
-                    <!-- Botón para eliminar usuario -->
+                    <!-- Botón para eliminar usuario con confirmación -->
                     <form action="{% url 'eliminar_usuario' usuario.id %}" method="post" style="display:inline;">
                         {% csrf_token %}
-                        <button type="submit">Eliminar Usuario</button>
+                        <button type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario? Esta acción es irreversible.')">Eliminar Usuario</button>
                     </form>
                 </td>
             </tr>

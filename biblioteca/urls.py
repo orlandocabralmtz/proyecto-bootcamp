@@ -17,4 +17,5 @@ urlpatterns = [
         views.eliminar_usuario,
         name="eliminar_usuario",
     ),
+    path("eliminar_libro/<int:libro_id>/", views.eliminar_libro, name="eliminar_libro"),
 ]

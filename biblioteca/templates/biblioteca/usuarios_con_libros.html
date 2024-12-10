@@ -9,7 +9,8 @@
             {{ libro.usuario_prestamo.nombre }}
             <form action="{% url 'eliminar_prestamo' libro.id %}" method="post" style="display:inline;">
                 {% csrf_token %}
-                <button type="submit">Eliminar Préstamo</button>
+                <!-- Botón para eliminar préstamo con confirmación -->
+                <button type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este préstamo? El libro será marcado como disponible nuevamente.')">Eliminar Préstamo</button>
             </form>
         </li>
     {% endfor %}
@@ -21,7 +22,6 @@
     {% comment %}! Se agrega el token de seguridad generado por Django de forma automática {% endcomment %}
     {% csrf_token %} 
 
-    
     <!-- Campo para seleccionar usuario -->
     <label for="usuario">Usuario:</label>
     <select name="usuario" id="usuario">
