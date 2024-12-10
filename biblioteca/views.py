@@ -1,22 +1,26 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Usuario, Libro
-from .forms import LibroForm
+from .forms import LibroForm, UsuarioForm
 
 
 def lista_usuarios(request):
     if request.method == "POST":
         # Si se envía el formulario, creamos un nuevo usuario
-        nombre = request.POST.get("nombre")
-        if nombre:
-            # Crear el nuevo usuario y guardar en la base de datos
-            Usuario.objects.create(nombre=nombre)
-        return redirect(
-            "lista_usuarios"
-        )  # Redirigir para evitar reenvíos de formulario
+        form = UsuarioForm(request.POST)
+        if form.is_valid():
+            form.save()  # Guarda el nuevo usuario en la base de datos
+            return redirect(
+                "lista_usuarios"
+            )  # Redirigir para evitar reenvíos de formulario
+    else:
+        form = UsuarioForm()  # Si es un GET, mostramos el formulario vacío
 
     # Obtener todos los usuarios
     usuarios = Usuario.objects.all()
-    return render(request, "biblioteca/lista_usuarios.html", {"usuarios": usuarios})
+
+    return render(
+        request, "biblioteca/lista_usuarios.html", {"usuarios": usuarios, "form": form}
+    )
 
 
 def eliminar_usuario(request, usuario_id):
