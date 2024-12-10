@@ -118,3 +118,8 @@ def eliminar_libro(request, libro_id):
     libro.delete()
 
     return redirect("lista_libros")  # Redirigir a la lista de libros
+
+
+# Vista personalizada para el error 404
+def pagina_no_encontrada(request, exception):
+    return redirect("lista_libros")  # Redirige a la página de lista_libros
